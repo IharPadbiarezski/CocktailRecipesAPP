@@ -214,4 +214,8 @@ class UI {
       favoritesTable.appendChild(tr);
     });
   }
+  // Remove single favorite from dom
+  removeFavorite(element) {
+    element.remove();
+  }
 }
