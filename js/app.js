@@ -22,7 +22,7 @@ function getCoctails(e) {
   // Check something is on the search input
   if (searchTerm === "") {
     // Call User Interfaceprint message
-    ui.printMessage();
+    ui.printMessage("Please a something into the form", "danger");
   } else {
     console.log("Success");
   }
