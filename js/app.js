@@ -38,7 +38,7 @@ function getCoctails(e) {
     // Server response from promise
     let serverResponse;
 
-    // Tyoe of search [ingredients, cocktails, or name]
+    // Type of search [ingredients, cocktails, or name]
     const type = document.querySelector("#type").value;
 
     // Evaluate the type of method and then execute the query
@@ -95,6 +95,9 @@ function resultsDelegation(e) {
       // remove the class
       e.target.classList.remove("is-favorite");
       e.target.textContent = "+";
+
+      // Remove from a storage
+      cocktailDB.removeFromDB(e.target.dataset.id);
     } else {
       // Add the class
       e.target.classList.add("is-favorite");
@@ -118,6 +121,9 @@ function resultsDelegation(e) {
 
 // Document Ready
 function documentReady() {
+  // Display on load the favorites from storage
+  ui.isFavorite();
+
   // Select the search category select
   const searchCategory = document.querySelector(".search-category");
   if (searchCategory) {
@@ -147,7 +153,7 @@ function documentReady() {
         // Remove from dom
         ui.removeFavorite(e.target.parentElement.parentElement);
 
-        // Remove from the localstorage
+        // Remove from the locals torage
         cocktailDB.removeFromDB(e.target.dataset.id);
       }
     });
