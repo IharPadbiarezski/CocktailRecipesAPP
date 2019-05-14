@@ -1,5 +1,6 @@
 // Instnciate the Clsses
-const ui = new UI();
+const ui = new UI(),
+  coctail = new CocktailAPI();
 
 // Create the Evet Listeers
 function eventListeners() {
@@ -24,6 +25,14 @@ function getCoctails(e) {
     // Call User Interfaceprint message
     ui.printMessage("Please a something into the form", "danger");
   } else {
-    console.log("Success");
+    // Query by the name of the drink
+    coctail.getDrinksByName(searchTerm).then(cocktails => {
+      if (cocktails.cocktails.drinks === null) {
+        // Nothing exist
+        ui.printMessage("There're no results, try a different term ", "danger");
+      } else {
+        ui.displayDrinksWithIngridients(cocktails.cocktails.drinks);
+      }
+    });
   }
 }
