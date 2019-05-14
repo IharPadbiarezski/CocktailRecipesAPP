@@ -123,4 +123,12 @@ function documentReady() {
   if (searchCategory) {
     ui.displayCategories();
   }
+
+  // When favorites page
+  const favoritesTable = document.querySelector("#favorites");
+  if (favoritesTable) {
+    // Get the favorites from storage and display them
+    const drinks = cocktailDB.getFromDB();
+    ui.displayFavorites(drinks);
+  }
 }
