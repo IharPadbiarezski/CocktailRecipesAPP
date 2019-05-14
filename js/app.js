@@ -9,6 +9,12 @@ function eventListeners() {
   if (searchForm) {
     searchForm.addEventListener("submit", getCoctails);
   }
+
+  //The results div listeners
+  const resultsDiv = document.querySelector("#results");
+  if (resultsDiv) {
+    resultsDiv.addEventListener("click", resultsDelegation);
+  }
 }
 
 eventListeners();
@@ -58,6 +64,18 @@ function getCoctails(e) {
           ui.displayDrinks(cocktails.cocktails.drinks);
         }
       }
+    });
+  }
+}
+
+// Delegation for the result area
+function resultsDelegation(e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains("get-recipe")) {
+    cocktail.getSingleRecipe(e.target.dataset.id).then(recipe => {
+      //Displays single recipe into a modal
+      ui.displaySingleRecipe(recipe.recipe.drinks[0]);
     });
   }
 }

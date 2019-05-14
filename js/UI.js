@@ -20,7 +20,7 @@ class UI {
                         <h2 class="card-title text-center">${
                           drink.strDrink
                         }</h2>
-                        <a class="btn btn-success" href="#" data-toggle="modal" data-id="${
+                        <a data-target="#recipe" class="btn btn-success get-recipe" href="#" data-toggle="modal" data-id="${
                           drink.idDrink
                         }">Get Recipe</a>
                     </div>
@@ -100,6 +100,25 @@ class UI {
         `;
     });
     return ingredientsTemplate;
+  }
+
+  //Display single recipe
+  displaySingleRecipe(recipe) {
+    // Get variables
+    const modalTitle = document.querySelector(".modal-title"),
+      modalDescription = document.querySelector(
+        ".modal-body .description-text"
+      ),
+      modalIngredients = document.querySelector(
+        ".modal-body .ingredient-list .list-group"
+      );
+
+    // Set the values
+    modalTitle.innerHTML = recipe.strDrink;
+    modalDescription.innerHTML = recipe.strInstructions;
+
+    // Display the ingredients
+    modalIngredients.innerHTML = this.displayIngredients(recipe);
   }
 
   // Displays a Custom Message
